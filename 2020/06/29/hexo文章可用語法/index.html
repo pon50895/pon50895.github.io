@@ -15,16 +15,17 @@
 <meta property="og:site_name" content="走過的路沒有寫入記憶,只好寫blog了">
 <meta property="og:description" content="標題(#)# HELLO 1 HELLO 1">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/QHdqtnu.png">
 <meta property="og:image" content="https://i.imgur.com/DJQXamS.jpg">
 <meta property="article:published_time" content="2020-06-29T14:53:04.000Z">
-<meta property="article:modified_time" content="2020-06-29T17:11:37.957Z">
+<meta property="article:modified_time" content="2020-06-30T16:30:21.985Z">
 <meta property="article:author" content="Roy">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="語法">
 <meta property="article:tag" content="md">
 <meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/DJQXamS.jpg">
+<meta name="twitter:image" content="https://i.imgur.com/QHdqtnu.png">
   
     <link rel="alternative" href="/atom.xml" title="走過的路沒有寫入記憶,只好寫blog了" type="application/atom+xml">
   
@@ -188,7 +189,7 @@
 <h3 id="HELLO-3"><a href="#HELLO-3" class="headerlink" title="HELLO 3"></a>HELLO 3</h3><p><code>#### HELLO 4</code></p>
 <h4 id="HELLO-4"><a href="#HELLO-4" class="headerlink" title="HELLO 4"></a>HELLO 4</h4><p><code>##### HELLO 5</code></p>
 <h5 id="HELLO-5"><a href="#HELLO-5" class="headerlink" title="HELLO 5"></a>HELLO 5</h5><p><code>###### HELLO 6</code></p>
-<h6 id="HELLO-6"><a href="#HELLO-6" class="headerlink" title="HELLO 6"></a>HELLO 6</h6><h1 id="程式碼引用"><a href="#程式碼引用" class="headerlink" title="程式碼引用"></a>程式碼引用</h1><p>用```包覆在語法的前後，<br>可以輸入指定語言，<br>用來強調語法結構。</p>
+<h6 id="HELLO-6"><a href="#HELLO-6" class="headerlink" title="HELLO 6"></a>HELLO 6</h6><h1 id="程式碼引用"><a href="#程式碼引用" class="headerlink" title="程式碼引用"></a>程式碼引用</h1><p>用```包覆在語法的前後，<br>可以輸入指定語言，<br>用來強調語法結構。<br><img src="https://i.imgur.com/QHdqtnu.png" alt="程式碼引用語法"></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"HELLO"</span>;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="列點"><a href="#列點" class="headerlink" title="列點(+, -, *)"></a>列點(+, -, *)</h1><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 四大奇書</span></span><br><span class="line"><span class="bullet">+ </span>三國演義</span><br><span class="line"><span class="bullet">+ </span>金瓶梅</span><br><span class="line"><span class="bullet">+ </span>水滸傳</span><br><span class="line"><span class="bullet">+ </span>西廂記</span><br></pre></td></tr></table></figure>
@@ -254,6 +255,110 @@
 <h1 id="圖片"><a href="#圖片" class="headerlink" title="圖片"></a>圖片</h1><p>只和超連結差了一個驚嘆號<br>面方括號[]放顯示的文字，後面括號()放url</p>
 <figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">早坂愛的小心機</span>](<span class="link">https://i.imgur.com/DJQXamS.jpg</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/DJQXamS.jpg" alt="早坂愛的小心機"></p>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|column 1|column 2|column 3|</span><br><span class="line">|:-------|:------:|-------:|</span><br><span class="line">|運氣|實力|運氣＋實力|</span><br><span class="line">|歐洲人|白手起家仔|天選之人|</span><br></pre></td></tr></table></figure>
+<p>直列表格內文字對齊方式取決於第二行的間隔<br><code>:----</code>  文字靠左<br><code>:---:</code>  文字置中<br><code>----:</code>  文字靠右</p>
+<table>
+<thead>
+<tr>
+<th align="left">column 1</th>
+<th align="center">column 2</th>
+<th align="right">column 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">運氣</td>
+<td align="center">實力</td>
+<td align="right">運氣＋實力</td>
+</tr>
+<tr>
+<td align="left">歐洲人</td>
+<td align="center">白手起家仔</td>
+<td align="right">天選之人</td>
+</tr>
+</tbody></table>
+<h1 id="文字樣式"><a href="#文字樣式" class="headerlink" title="文字樣式"></a>文字樣式</h1><h2 id="字體"><a href="#字體" class="headerlink" title="字體"></a>字體</h2><table>
+<thead>
+<tr>
+<th align="center">字體</th>
+<th align="center">語法</th>
+<th align="center">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">斜體</td>
+<td align="center"><code>*斜體*</code></td>
+<td align="center"><em>斜體</em></td>
+</tr>
+<tr>
+<td align="center">粗體</td>
+<td align="center"><code>**粗體**</code></td>
+<td align="center"><strong>粗體</strong></td>
+</tr>
+<tr>
+<td align="center">粗斜體</td>
+<td align="center"><code>***粗斜體***</code></td>
+<td align="center"><strong><em>粗斜體</em></strong></td>
+</tr>
+<tr>
+<td align="center">刪除線</td>
+<td align="center"><code>~~刪除線~~</code></td>
+<td align="center"><del>刪除線</del></td>
+</tr>
+<tr>
+<td align="center">底線</td>
+<td align="center"><code>&lt;u&gt;底線&lt;u&gt;</code></td>
+<td align="center"><u>底線<u></td>
+</tr>
+</tbody></table>
+<h2 id="顏色"><a href="#顏色" class="headerlink" title="顏色"></a>顏色</h2><p>md格式沒有語法可以使用<br>只能使用html的形式來做</p>
+<table>
+<thead>
+<tr>
+<th align="center">語法</th>
+<th align="center">例子</th>
+<th align="center">語法</th>
+<th align="center">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;span style=&quot;color:red&quot;&gt;紅色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:red">紅色</span></td>
+<td align="center"><code>&lt;span style=&quot;color:orange&quot;&gt;橘色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:orange">橘色</span></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;span style=&quot;color:yellow&quot;&gt;黃色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:yellow">黃色</span></td>
+<td align="center"><code>&lt;span style=&quot;color:green&quot;&gt;綠色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:green">綠色</span></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;span style=&quot;color:blue&quot;&gt;藍色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:blue">藍色</span></td>
+<td align="center"><code>&lt;span style=&quot;color:darkblue&quot;&gt;深藍色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:darkblue">深藍色</span></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;span style=&quot;color:purple&quot;&gt;紫色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:purple">紫色</span></td>
+<td align="center"><code>&lt;span style=&quot;color:olive&quot;&gt;橄欖色&lt;/span&gt;</code></td>
+<td align="center"><span style="color:olive">橄欖色</span></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;span style=&quot;color:#FF69B4&quot;&gt;Hotpink&lt;/span&gt;</code></td>
+<td align="center"><span style="color:#FF69B4">Hotpink</span></td>
+<td align="center"><code>&lt;span style=&quot;color:#    9966CC&quot;&gt;Amethyst&lt;/span&gt;</code></td>
+<td align="center"><span style="color:#9966CC">Amethyst</span></td>
+</tr>
+</tbody></table>
+<p>你也可以到 <a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E9%A1%B5%E9%A2%9C%E8%89%B2" target="_blank" rel="noopener">ＷIKI:網頁顏色</a> 找找看你喜歡的顏色</p>
+<h1 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h1><ul>
+<li>某些語法外觀與主題樣式有關</li>
+<li>圖片請直接上傳到圖床，盡量不要用部署的資源（如git）。很容易不小心就超過了上限。</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://ed521.github.io/2019/08/hexo-markdown/#%E6%96%87%E5%AD%97%E9%A1%8F%E8%89%B2" target="_blank" rel="noopener">[教學] 撰寫 Hexo 文章 - Markdown 語法大全</a></li>
+</ul>
 
       
 
