@@ -16,7 +16,7 @@
 <meta property="og:description" content="需求與考量在開發時遇到一個需求，是要定時清除PHP 中的Session資料。 於是我考慮了以下方案：  設定Session 過期時間 利用CI 架構中Hooker自訂Session生存時間程式，直接刪除Session 內容資料">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-07-12T15:53:04.000Z">
-<meta property="article:modified_time" content="2020-07-12T17:07:28.195Z">
+<meta property="article:modified_time" content="2020-07-12T17:15:30.137Z">
 <meta property="article:author" content="Roy">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="session">
@@ -193,7 +193,7 @@
 <p>意思是，每次存取伺服器資料，假設是1/100的機率刪除，<br>那麼在那百分之一的機率達成以後，會啟動gc去掃那些Session的過期檔案清除。</p>
 <p>那有人會說，是不是乾脆機率調成1就一定可以運作得很好呢？<br>可以確保Session 必定被刪除，但Server的資源會被消耗得相當厲害。<br><span style="color:red">所以為了效能考量，請不要把刪除的機率調整太高。</span></p>
 <p>而<code>session.cookie_lifetime</code>參數掌管著client端的Session id 更換，<br>若設定成0 則代表每次關閉client都更換phpsession id,<br>若設定成300,<br>則代表著三百秒之後phpsession id會被更換。<br>因為phpsession id被更換了，你會啟用不同的session 檔案，因此裡面的資料是空的。<br>那你也許會問，那原本的檔案去哪了呢？<br><span style="color:red">它，哪裡都沒去。</span><br>因此，如果你沒有設定server上的存活時間，那麼這檔案就會一直存在，久了server的資料就會越長越大，最後就會拖垮效能跟可用空間。</p>
-<p>那麼如果要清除session 的資料，<br>但又不想要跟時間相關的話，<br>利用<code>session_start()</code>與<code>session_destroy()</code>的組合同樣可以造成phpsession id 更換的效果。</p>
+<p>那麼如果要清除session 的資料，<br>但又不想要跟時間相關的話，<br>利用``session_destroy()<code>與</code>session_start()`的組合同樣可以造成phpsession id 更換的效果。</p>
 <p>但如果使用全域變數直接指定成空陣列的做法<code>$_SESSION = []</code>也可以做到資料面的清除，但phpsession id 仍會保留。</p>
 <hr>
 <h1 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h1><ul>
@@ -459,22 +459,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">email</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">validation</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">regexp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
@@ -488,6 +472,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">expired</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">email</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">validation</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">regexp</a>
               </li>
              
               <li class="article-tag-list-item">
