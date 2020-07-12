@@ -160,6 +160,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-PHP 中的Session清除 &amp; 有效時間" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/12/PHP%20%E4%B8%AD%E7%9A%84Session%E6%B8%85%E9%99%A4%20&%20%E6%9C%89%E6%95%88%E6%99%82%E9%96%93/">PHP 中的Session清除 &amp; 有效時間</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/12/PHP%20%E4%B8%AD%E7%9A%84Session%E6%B8%85%E9%99%A4%20&%20%E6%9C%89%E6%95%88%E6%99%82%E9%96%93/" class="archive-article-date">
+  	<time datetime="2020-07-12T15:53:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="需求與考量"><a href="#需求與考量" class="headerlink" title="需求與考量"></a>需求與考量</h1><p>在開發時遇到一個需求，是要定時清除PHP 中的Session資料。</p>
+<p>於是我考慮了以下方案：</p>
+<ul>
+<li>設定Session 過期時間</li>
+<li>利用CI 架構中Hooker自訂Session生存時間程式，直接刪除Session 內容資料</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/07/12/PHP%20%E4%B8%AD%E7%9A%84Session%E6%B8%85%E9%99%A4%20&%20%E6%9C%89%E6%95%88%E6%99%82%E9%96%93/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">session</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">lifetime</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">expired</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/php//" class="article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/php/session//" class="article-tag-list-link color3">session</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/12/PHP%20%E4%B8%AD%E7%9A%84Session%E6%B8%85%E9%99%A4%20&%20%E6%9C%89%E6%95%88%E6%99%82%E9%96%93/">展開全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-本站瀏覽須知" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -244,7 +352,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>regexp 魔法小咒語：<code>/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/</code></p>
+        <h1 id="魔法小咒語"><a href="#魔法小咒語" class="headerlink" title="魔法小咒語"></a>魔法小咒語</h1><p>regexp 魔法小咒語：<code>/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/</code></p>
 <p>有些表達式寫法是建立在email 的長度為256 - 2的情況下構成的，<br>但這裡<span style="color:red">沒有</span>檢驗到email的最大長度(因為估計太長的也無法被正常收發信)，<br>僅只判斷格式、形式正不正確。</p>
         
           <a class="article-more-a" href="/2020/07/07/email%E7%9A%84%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F-mysql%E7%B0%A1%E6%98%93%E8%AA%9E%E6%B3%95/#more">more >></a>
@@ -538,6 +646,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">regexp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">lifetime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">expired</a>
               </li>
              
               <li class="article-tag-list-item">
