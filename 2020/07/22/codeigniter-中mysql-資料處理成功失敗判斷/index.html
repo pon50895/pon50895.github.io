@@ -16,7 +16,7 @@
 <meta property="og:description" content="前言 - MySQL的 insert 和 update 檢查方式不太一樣下午在開發時，把之前用來insert的model function 完完整整地複製，把insert 改成 updateinto 改成set … 之類的。結果在檢查的時候發現update語法都正確(都用$this-&gt;db-&gt;last_query()回傳印出來看都正常)之後就開始檢討自己的檢查方式是不是哪裡有問題，後來">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-07-21T16:12:15.000Z">
-<meta property="article:modified_time" content="2020-07-21T16:52:30.851Z">
+<meta property="article:modified_time" content="2020-07-21T16:54:26.550Z">
 <meta property="article:author" content="Roy">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="codeigniter">
@@ -190,7 +190,7 @@
 <li>判斷<code>if ($this-&gt;db-&gt;insert_id &lt;= 0)</code><br>通常用於關聯時，有id傳遞的時候，<br>這個方法需要在該table有 primary key, 且有auto increment的時候才可用。<br>成功insert 時，此數字會大於零，為一個自然數。</li>
 </ul>
 <p><span style="color:red">*如果使用$this-&gt;db-&gt;insert_batch時，若insert複數筆資料，則使用$this-&gt;db-&gt;insert_id 回傳第一筆的insert_id值，若需要最後一個id，則需要自行計算。</span></p>
-<h1 id="MySQL-update-檢查方式與小坑"><a href="#MySQL-update-檢查方式與小坑" class="headerlink" title="MySQL update 檢查方式與小坑"></a>MySQL update 檢查方式與小坑</h1><p>今天在insert時，忘記不能使用前述第二點<code>if ($this-&gt;db-&gt;affected_rows() == 0)</code>來判斷，原因是，<span style="color:red">如果table內的資料與你的指定資料欄位值相同時，此時的affected_row()取得為0，會直接被視為更新失敗</span>，因此正確的做法應該以第一個判斷<code>if ( $this-&gt;db-&gt;query($sql, $bind) == FALSE)</code>為準</p>
+<h1 id="MySQL-update-檢查方式與小坑"><a href="#MySQL-update-檢查方式與小坑" class="headerlink" title="MySQL update 檢查方式與小坑"></a>MySQL update 檢查方式與小坑</h1><p>今天在insert時，忘記不能使用前述第二點<code>if ($this-&gt;db-&gt;affected_rows() == 0)</code>來判斷，<br>原因是，<span style="color:red">如果table內的資料與你的指定資料欄位值相同時，此時的affected_row()取得為0，會直接被視為更新失敗</span>，<br>因此正確的做法應該以第一個判斷<code>if ( $this-&gt;db-&gt;query($sql, $bind) == FALSE)</code>為準</p>
 <p>*delete 的成功與否也與update相同</p>
 <h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><p>以下簡要列出可用的檢查方式：</p>
 <table>
@@ -489,18 +489,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">session</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">lifetime</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">expired</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">codeigniter</a>
               </li>
              
@@ -518,6 +506,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">judge</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">session</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">lifetime</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">expired</a>
               </li>
              
               <li class="article-tag-list-item">
