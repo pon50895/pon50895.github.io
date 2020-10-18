@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: update | Roy技術分享紀錄blog</title>
+  <title>MAMP使用source匯入語法 | Roy技術分享紀錄blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走過的路沒有寫入記憶,只好寫blog了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Roy技術分享紀錄blog">
-<meta property="og:url" content="http://yoursite.com/tags/update/index.html">
+  <meta name="description" content="需求與考量在開發時發現使用phpmyadmin做匯入時失敗，因為檔案實在太大了(1.6GB)。 實際上在nginx有設定可以上傳的檔案大小(我沒記錯的話是1MB)，這部分我覺得去修改意義上不大，以後又碰到上限豈不是得一改再改？而且也不適合這樣做。 且php也對檔案上傳大小做了限制，同前述理由，反正都是在本機做的，不如就直接匯進去吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAMP使用source匯入語法">
+<meta property="og:url" content="http://yoursite.com/2020/10/18/MAMP%E4%BD%BF%E7%94%A8source%E5%8C%AF%E5%85%A5%E8%AA%9E%E6%B3%95/index.html">
 <meta property="og:site_name" content="Roy技術分享紀錄blog">
-<meta property="og:description" content="走過的路沒有寫入記憶,只好寫blog了">
+<meta property="og:description" content="需求與考量在開發時發現使用phpmyadmin做匯入時失敗，因為檔案實在太大了(1.6GB)。 實際上在nginx有設定可以上傳的檔案大小(我沒記錯的話是1MB)，這部分我覺得去修改意義上不大，以後又碰到上限豈不是得一改再改？而且也不適合這樣做。 且php也對檔案上傳大小做了限制，同前述理由，反正都是在本機做的，不如就直接匯進去吧！">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-10-18T09:36:39.000Z">
+<meta property="article:modified_time" content="2020-10-18T10:06:33.761Z">
 <meta property="article:author" content="Roy">
-<meta property="article:tag" content="後端">
-<meta property="article:tag" content=" backend">
-<meta property="article:tag" content=" php">
-<meta property="article:tag" content=" python">
-<meta property="article:tag" content=" javascript">
-<meta property="article:tag" content=" go">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="MAMP">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="import">
+<meta property="article:tag" content="source">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Roy技術分享紀錄blog" type="application/atom+xml">
@@ -158,36 +160,59 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MAMP使用source匯入語法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/22/codeigniter-%E4%B8%ADmysql-%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E6%88%90%E5%8A%9F%E5%A4%B1%E6%95%97%E5%88%A4%E6%96%B7/" class="archive-article-date">
-  	<time datetime="2020-07-21T16:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/22/codeigniter-%E4%B8%ADmysql-%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E6%88%90%E5%8A%9F%E5%A4%B1%E6%95%97%E5%88%A4%E6%96%B7/">codeigniter 中mysql 資料處理成功失敗判斷</a>
+    <h1 class="article-title" itemprop="name">
+      MAMP使用source匯入語法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/18/MAMP%E4%BD%BF%E7%94%A8source%E5%8C%AF%E5%85%A5%E8%AA%9E%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-10-18T09:36:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="需求與考量"><a href="#需求與考量" class="headerlink" title="需求與考量"></a>需求與考量</h1><p>在開發時發現使用phpmyadmin做匯入時失敗，因為檔案實在太大了(1.6GB)。</p>
+<p>實際上在nginx有設定可以上傳的檔案大小(我沒記錯的話是1MB)，<br>這部分我覺得去修改意義上不大，以後又碰到上限豈不是得一改再改？<br>而且也不適合這樣做。</p>
+<p>且php也對檔案上傳大小做了限制，<br>同前述理由，反正都是在本機做的，不如就直接匯進去吧！</p>
+<a id="more"></a>
+
+<h1 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h1><p>請準備好phpmyadmin匯出的.sql檔案<br>或自行準備好的insert 語法檔案，存成.txt/ .sql都行</p>
+<hr>
+<h1 id="開始匯入"><a href="#開始匯入" class="headerlink" title="開始匯入"></a>開始匯入</h1><p>1.請打開你的comman line 貼入執行以下指令</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<p>其中-u, -r後面應該是你在MAMP預設的利用command line可以登入的帳號密碼，<br>在此預設大家都沒動過，故用root。</p>
+<p>2.貼入執行以下指令 </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /Users/&lt;你的電腦使用者&gt;/Downloads/&lt;你的檔案.sql&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此處預設你的檔案放在Downloads 下載資料夾中</p>
+<p>3.完成！<br>大檔案需要跑比較久，之前匯了1.6GB大概跑了8分鐘左右。</p>
+<hr>
+<h1 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h1><ul>
+<li>使用時需要使用有權限變更的帳號密碼</li>
+<li>若沒有指定資料庫，則需要使用指令指定資料庫才行。<br><code>use &lt;你的DB&gt;;</code></li>
+</ul>
+<hr>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://sites.google.com/site/mamppro/en/mamp/how-tos/using-mysql-command-line" target="_blank" rel="noopener">MAMP &amp; MAMP PRO Documentation</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,29 +222,29 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">codeigniter</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">insert</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MAMP</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">update</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">judge</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">import</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">source</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -229,28 +254,128 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/php/codeigniter//" class="article-tag-list-link color2">codeigniter</a>
+        			<a href="/categories/php/MAMP//" class="article-tag-list-link color5">MAMP</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/php/codeigniter/mysql//" class="article-tag-list-link color1">mysql</a>
+        			<a href="/categories/php/MAMP/mysql//" class="article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/18/MAMP%E4%BD%BF%E7%94%A8source%E5%8C%AF%E5%85%A5%E8%AA%9E%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/07/22/codeigniter-%E4%B8%ADmysql-%E8%B3%87%E6%96%99%E8%99%95%E7%90%86%E6%88%90%E5%8A%9F%E5%A4%B1%E6%95%97%E5%88%A4%E6%96%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">codeigniter 中mysql 資料處理成功失敗判斷</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#需求與考量"><span class="toc-number">1.</span> <span class="toc-text">需求與考量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#事前準備"><span class="toc-number">2.</span> <span class="toc-text">事前準備</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#開始匯入"><span class="toc-number">3.</span> <span class="toc-text">開始匯入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意事項"><span class="toc-number">4.</span> <span class="toc-text">注意事項</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -273,9 +398,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
