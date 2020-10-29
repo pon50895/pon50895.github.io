@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: mysql | Roy技術分享紀錄blog</title>
+  <title>打開sql的全部紀錄-general log | Roy技術分享紀錄blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走過的路沒有寫入記憶,只好寫blog了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Roy技術分享紀錄blog">
-<meta property="og:url" content="http://yoursite.com/categories/mysql/index.html">
+  <meta name="description" content="需求與考量開發的過程中，舊系統的code相當複雜、非常難理清全部的行為。需要將舊系統的操作流程釐清，copy舊code, 在本地端打開general log來了解舊code實際操作了哪些,作為追蹤實際程式執行的方式之一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打開sql的全部紀錄-general log">
+<meta property="og:url" content="http://yoursite.com/2020/10/29/%E6%89%93%E9%96%8Bsql%E7%9A%84%E5%85%A8%E9%83%A8%E7%B4%80%E9%8C%84/index.html">
 <meta property="og:site_name" content="Roy技術分享紀錄blog">
-<meta property="og:description" content="走過的路沒有寫入記憶,只好寫blog了">
+<meta property="og:description" content="需求與考量開發的過程中，舊系統的code相當複雜、非常難理清全部的行為。需要將舊系統的操作流程釐清，copy舊code, 在本地端打開general log來了解舊code實際操作了哪些,作為追蹤實際程式執行的方式之一。">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-10-29T13:37:22.000Z">
+<meta property="article:modified_time" content="2020-10-29T14:10:01.183Z">
 <meta property="article:author" content="Roy">
-<meta property="article:tag" content="後端">
-<meta property="article:tag" content=" backend">
-<meta property="article:tag" content=" php">
-<meta property="article:tag" content=" python">
-<meta property="article:tag" content=" javascript">
-<meta property="article:tag" content=" go">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="general log">
+<meta property="article:tag" content="slow log">
+<meta property="article:tag" content="log">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Roy技術分享紀錄blog" type="application/atom+xml">
@@ -158,36 +158,58 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-打開sql的全部紀錄" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/29/%E6%89%93%E9%96%8Bsql%E7%9A%84%E5%85%A8%E9%83%A8%E7%B4%80%E9%8C%84/" class="archive-article-date">
-  	<time datetime="2020-10-29T13:37:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/29/%E6%89%93%E9%96%8Bsql%E7%9A%84%E5%85%A8%E9%83%A8%E7%B4%80%E9%8C%84/">打開sql的全部紀錄-general log</a>
+    <h1 class="article-title" itemprop="name">
+      打開sql的全部紀錄-general log
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/10/29/%E6%89%93%E9%96%8Bsql%E7%9A%84%E5%85%A8%E9%83%A8%E7%B4%80%E9%8C%84/" class="archive-article-date">
+  	<time datetime="2020-10-29T13:37:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="需求與考量"><a href="#需求與考量" class="headerlink" title="需求與考量"></a>需求與考量</h1><p>開發的過程中，<br>舊系統的code相當複雜、非常難理清全部的行為。<br>需要將舊系統的操作流程釐清，<br>copy舊code, 在本地端打開general log來了解舊code實際操作了哪些,<br>作為追蹤實際程式執行的方式之一。 </p>
+<a id="more"></a>
+
+<h1 id="查看mySQL是否已經開啟general-log"><a href="#查看mySQL是否已經開啟general-log" class="headerlink" title="查看mySQL是否已經開啟general log"></a>查看mySQL是否已經開啟general log</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#39;general%&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>這個語法可以得到以下資訊</p>
+<ul>
+<li>是否打開了general log</li>
+<li>general log 存放的位置(general_log_file)</li>
+</ul>
+<h1 id="在mysql-打開general-log的方法"><a href="#在mysql-打開general-log的方法" class="headerlink" title="在mysql 打開general log的方法"></a>在mysql 打開general log的方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global general_log&#x3D;1;</span><br></pre></td></tr></table></figure>
+
+<h1 id="在mysql-設定general-log位置"><a href="#在mysql-設定general-log位置" class="headerlink" title="在mysql 設定general log位置"></a>在mysql 設定general log位置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global general_log_file&#x3D;&lt;your_path&gt;;</span><br></pre></td></tr></table></figure>
+<p>path exapmle<br>general_log_file=/tmp/general_log.log</p>
+<p>#在my.cnf 中設定<br>在my.cnf中設定完後，需要重新啟動mysql 的服務，你的設定才會生效！</p>
+<p>找到標籤[mysqld]<br>在底下加入以下文字後儲存，請確保該路徑可以被寫入。<br>log-output = FILE<br>general_log = 1<br>general_log_file=”/<your_path>/general-query.log”</p>
+<h1 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h1><ul>
+<li>general log 增長速度非常快，因此不用到時請記得關閉或需要定期清理。</li>
+<li>另有slow log 可以用來查詢query超過1秒的log，使用前一樣需要打開。</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://www.itread01.com/articles/1476705922.html" target="_blank" rel="noopener">mysql的全量(查詢)日誌general-log的開啟和分析方法</a></li>
+<li><a href="https://xyz.cinc.biz/2015/01/mysql-general-slow-log.html" target="_blank" rel="noopener">MySQL General Query Log 和 Slow Query Log</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -211,7 +233,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -224,82 +246,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/29/%E6%89%93%E9%96%8Bsql%E7%9A%84%E5%85%A8%E9%83%A8%E7%B4%80%E9%8C%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/07/email%E7%9A%84%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F-mysql%E7%B0%A1%E6%98%93%E8%AA%9E%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-07-07T01:43:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/27/%E5%BE%9E%E5%BE%8C%E5%BE%80%E5%89%8D%E7%AC%AC%E5%B9%BE%E8%A1%8C%E7%9A%84function-fget-r/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">由後往前取得檔案第幾行</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/07/email%E7%9A%84%E6%AD%A3%E5%89%87%E8%A1%A8%E9%81%94%E5%BC%8F-mysql%E7%B0%A1%E6%98%93%E8%AA%9E%E6%B3%95/">email的正則表達式+mysql簡易語法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">email</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">validation</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">regexp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql/regexp//" class="article-tag-list-link color2">regexp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#需求與考量"><span class="toc-number">1.</span> <span class="toc-text">需求與考量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查看mySQL是否已經開啟general-log"><span class="toc-number">2.</span> <span class="toc-text">查看mySQL是否已經開啟general log</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在mysql-打開general-log的方法"><span class="toc-number">3.</span> <span class="toc-text">在mysql 打開general log的方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在mysql-設定general-log位置"><span class="toc-number">4.</span> <span class="toc-text">在mysql 設定general log位置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意事項"><span class="toc-number">5.</span> <span class="toc-text">注意事項</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -322,10 +379,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
